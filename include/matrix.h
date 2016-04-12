@@ -1,11 +1,11 @@
 #include <vector>
 #include <fstream>
 
-typedef matrix vector<vector<int>>;
+typedef std::vector<std::vector<int>> matrix;
 
-matrix getMatrix(ifsteam in,int count)
+matrix getMatrix(std::ifstream &in,int count)
 {
-    matrix mat(count,vector<int> (count));
+    matrix mat(count,std::vector<int> (count));
 
     for(int i = 0;i < count;++i)
     {
@@ -17,7 +17,7 @@ matrix getMatrix(ifsteam in,int count)
     return mat;
 }
 
-void printMatrix(ofstream out,const matrix &mat)
+void printMatrix(std::ofstream &out,const matrix &mat)
 {
     int count = mat.size();
 
@@ -27,6 +27,6 @@ void printMatrix(ofstream out,const matrix &mat)
         {
             out<<mat[i][j]<<' ';
         }
-        out<<endl;
+        out<<std::endl;
     }
 }
