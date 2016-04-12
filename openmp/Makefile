@@ -2,7 +2,9 @@ CC = g++
 OPTIONS = -std=c++11
 PARALLEL = -fopenmp
 
-all: one_serial one_parallel two_serial two_parallel
+.PHONY: all clean
+
+all: one_serial one_parallel two_serial two_parallel three_serial three_parallel
 
 one_serial: one.cpp ../include/matrix.h
 	$(CC) $< -o $@ $(OPTIONS)
@@ -16,5 +18,11 @@ two_serial: two.cpp ../include/matrix.h
 two_parallel: two.cpp ../include/matrix.h
 	$(CC) $< -o $@ $(OPTIONS) $(PARALLEL)
 
+three_serial: three.cpp ../include/matrix.h
+	$(CC) $< -o $@ $(OPTIONS)
+
+three_parallel: three.cpp ../include/matrix.h
+	$(CC) $< -o $@ $(OPTIONS) $(PARALLEL)
+
 clean:
-	rm -f out one_serial one_parallel two_serial two_parallel
+	rm -f out one_serial one_parallel two_serial two_parallel three_serial three_parallel
