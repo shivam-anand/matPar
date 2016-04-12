@@ -17,8 +17,10 @@ int main()
 
     in.close();
 
+    int countSquared = count * count;
+
     #pragma omp parallel for
-    for(int x = 0;x < count*count;++x)
+    for(int x = 0;x < countSquared;++x)
     {
         int i = x/count;
         int j = x%count;
