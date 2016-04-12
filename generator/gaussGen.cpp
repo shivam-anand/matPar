@@ -15,8 +15,8 @@ int main(int argc,char *argv[])
 {
     if(argc != 2)
     {
-        cerr<<"Usage: generator count\nGenerate an instance of matrix\
-        multiplication problem of size count * count";
+        cerr<<"Usage: generator count\nGenerate an instance of gaussian\
+        elimination problem of size count";
 
         return -1;
     }
@@ -27,20 +27,23 @@ int main(int argc,char *argv[])
 
     out<<count<<endl;
 
-    default_random_engine engine;
+    default_random_engine engine(time(NULL));
     uniform_int_distribution<int> dist(generatedNumberMin,generatedNumberMax);
     auto gen = bind(dist,engine);
 
-    for(int matCount = 0;matCount < 2;++matCount)
+    //The A matrix
+    for(int i = 0;i<count;++i)
     {
-        for(int i = 0;i<count;++i)
+        for(int j = 0;j<count;++j)
         {
-            for(int j = 0;j<count;++j)
-            {
-                out<<gen()<<' ';
-            }
-            out<<endl;
+            out<<gen()<<' ';
         }
+        out<<endl;
+    }
+    //The b matrix
+    for(int i = 0;i < count;++i)
+    {
+        out<<gen()<<endl;
     }
 
     out.close();
