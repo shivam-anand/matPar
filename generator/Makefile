@@ -1,8 +1,12 @@
 CC = g++
 OPTIONS = -std=c++11
 
-generator: generator.cpp
+%: %.cpp
 	$(CC) $< -o $@ $(OPTIONS)
 
+.PHONY:all clean
+
+all: matGen gaussGen
+
 clean:
-	rm -f generator
+	rm -f matGen gaussGen
